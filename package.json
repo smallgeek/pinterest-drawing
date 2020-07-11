@@ -1,0 +1,30 @@
+{
+  "name": "pinterest-slideshow",
+  "version": "1.0.0",
+  "description": "Pinterest をスライドショー表示する Google Chrome 拡張",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smallgeek/pinterest-slideshow.git"
+  },
+  "author": "smallgeek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smallgeek/pinterest-slideshow/issues"
+  },
+  "homepage": "https://github.com/smallgeek/pinterest-slideshow#readme",
+  "dependencies": {
+    "@types/copy-webpack-plugin": "^6.0.0",
+    "@types/webpack": "^4.41.21",
+    "copy-webpack-plugin": "^6.0.3",
+    "ts-loader": "^8.0.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6",
+    "webextension-polyfill-ts": "^0.19.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
