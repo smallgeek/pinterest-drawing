@@ -7,11 +7,11 @@
   ],
   "browser_action": {
     "default_icon": "128.png",
-    "default_title": "Top3 Tweet"
+    "default_title": "Pinterest Slideshow"
   },
   "content_scripts": [
     {
-      "matches": ["https://*.pinterest.jp/"],
+      "matches": ["https://*.pinterest.jp/*"],
       "css": ["style.css"],
       "js": ["content_scripts.js"]
     }
