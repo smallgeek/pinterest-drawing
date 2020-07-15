@@ -3,7 +3,8 @@
   "manifest_version": 2,
   "version": "1.0",
   "permissions": [
-    "https://*.pinterest.jp/"
+    "https://*.pinterest.jp/",
+    "storage"
   ],
   "browser_action": {
     "default_icon": "128.png",
@@ -11,7 +12,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.pinterest.jp/*"],
+      "matches": ["https://*.pinterest.jp/pin/*"],
       "css": ["style.css"],
       "js": ["content_scripts.js"]
     }

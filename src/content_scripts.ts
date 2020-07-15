@@ -1,7 +1,9 @@
+import { browser } from 'webextension-polyfill-ts';
+
 /**
  * ページに機能ビューを適用する
  */
-function applyFunctionView() {
+async function applyFunctionView() {
     const bar = document.querySelector("[data-test-id='closeupActionBar']");
     if (!bar) {
         return;
@@ -19,37 +21,55 @@ function applyFunctionView() {
 
     const button = document.createElement("input");
     button.type = "button";
-    button.innerText = "開始"
-
-    let timeoutId = 0;
-
-    button.onclick = e => {
-
-        if (!timeoutId) {
-            timeoutId = window.setTimeout(() => {
-                // 次のピンを取得
-                //TODO: ボタンを押してから表示したピンは除く
-                const wrapper = document.querySelector("[data-test-id='pinWrapper']");
-                const nextPin = wrapper?.querySelector("a");
-
-                if (nextPin) {
-                    //TODO: ピンを履歴に保存する
-                    document.location.href = nextPin.href;
-                }
-
-            }, 6000);
-
-            console.log("start");
-        } else {
-            clearTimeout(timeoutId);
-            timeoutId = 0;
-
-            //TODO: ピンの一覧を表示する
-        }
-    };
 
     div.appendChild(button);
     bar.appendChild(div);
+
+    // 現在の実行IDを取得
+    let timeoutId = (await browser.storage.local.get("timeoutId")).timeoutId;
+
+    // 実行中（前のピンからの遷移）の場合
+    if (timeoutId) {
+        timeoutId = startTimer();
+        button.value = "停止";
+        await browser.storage.local.set({ timeoutId: timeoutId });
+    } else {
+        button.value = "開始";
+    }
+
+    button.onclick = async e => {
+        // 実行中でなければ
+        if (!timeoutId) {
+            timeoutId = startTimer();
+            button.value = "停止";
+        } else {
+            clearTimeout(timeoutId);
+            timeoutId = 0;
+            button.value = "開始";
+
+            //TODO: ピンの一覧を表示する
+        }
+
+        await browser.storage.local.set({ timeoutId: timeoutId });
+    };
+}
+
+/**
+ * タイマーを開始する
+ */
+function startTimer() {
+    return setTimeout(() => {
+        // 次のピンを取得
+        //TODO: ボタンを押してから表示したピンは除く
+        const wrapper = document.querySelector("[data-test-id='pinWrapper']");
+        const nextPin = wrapper?.querySelector("a");
+
+        if (nextPin) {
+            //TODO: ピンを履歴に保存する
+            document.location.href = nextPin.href;
+        }
+
+    }, 6000);
 }
 
 const observer = new MutationObserver(applyFunctionView);
