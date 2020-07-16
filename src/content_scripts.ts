@@ -4,7 +4,7 @@ import { browser } from 'webextension-polyfill-ts';
  * ページに機能ビューを適用する
  */
 async function applyFunctionView() {
-    const bar = document.querySelector("[data-test-id='closeupActionBar']");
+    const bar = document.querySelector("[data-test-id='closeup-action-items']");
     if (!bar) {
         return;
     }
@@ -19,9 +19,7 @@ async function applyFunctionView() {
     const div = document.createElement("div");
     div.id = "test-tag";
 
-    const button = document.createElement("input");
-    button.type = "button";
-
+    const button = document.createElement("button");
     div.appendChild(button);
     bar.appendChild(div);
 
@@ -31,21 +29,21 @@ async function applyFunctionView() {
     // 実行中（前のピンからの遷移）の場合
     if (timeoutId) {
         timeoutId = startTimer();
-        button.value = "停止";
+        button.innerText = "停止";
         await browser.storage.local.set({ timeoutId: timeoutId });
     } else {
-        button.value = "開始";
+        button.innerText = "開始";
     }
 
     button.onclick = async e => {
         // 実行中でなければ
         if (!timeoutId) {
             timeoutId = startTimer();
-            button.value = "停止";
+            button.innerText = "停止";
         } else {
             clearTimeout(timeoutId);
             timeoutId = 0;
-            button.value = "開始";
+            button.innerText = "開始";
 
             //TODO: ピンの一覧を表示する
         }
