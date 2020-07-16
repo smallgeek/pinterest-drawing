@@ -12,7 +12,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*.pinterest.jp/pin/*"],
+      "matches": ["https://*.pinterest.jp/*"],
       "css": ["style.css"],
       "js": ["content_scripts.js"]
     }
