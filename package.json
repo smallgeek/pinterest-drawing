@@ -1,21 +1,21 @@
 {
-  "name": "pinterest-slideshow",
+  "name": "pinterest-drawing",
   "version": "1.0.0",
-  "description": "Pinterest をスライドショー表示する Google Chrome 拡張",
+  "description": "Pinterest を使用して絵の練習をするための Google Chrome 拡張",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/smallgeek/pinterest-slideshow.git"
+    "url": "git+https://github.com/smallgeek/pinterest-drawing.git"
   },
   "author": "smallgeek",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/smallgeek/pinterest-slideshow/issues"
+    "url": "https://github.com/smallgeek/pinterest-drawing/issues"
   },
-  "homepage": "https://github.com/smallgeek/pinterest-slideshow#readme",
+  "homepage": "https://github.com/smallgeek/pinterest-drawing#readme",
   "dependencies": {
     "webextension-polyfill-ts": "^0.19.0"
   },

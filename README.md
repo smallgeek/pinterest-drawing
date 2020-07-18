@@ -1,2 +1,2 @@
-# pinterest-slideshow
-Pinterest をスライドショー表示する Google Chrome 拡張
+# pinterest-drawing
+Pinterest を使用して絵の練習をするための Google Chrome 拡張
