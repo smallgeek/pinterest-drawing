@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import { browser } from 'webextension-polyfill-ts';
+import moment from 'moment';
 import Vue from 'vue';
 
 export default Vue.extend({
@@ -15,14 +16,21 @@ export default Vue.extend({
     return {
       buttonText: "***", //TODO: drawingData.timeoutId の値で自動で切り替えるようにする
       limit: 0,
-      beginTime: new Date(0),
-      currentTime: new Date(0)
+      beginTime: 0,
+      currentTime: 0,
     }
   },
   computed: {
     leftTime() {
-      const left = this.$data.limit - (this.$data.currentTime - this.$data.beginTime);
-      return Math.max(0, left);
+      let left = 0;
+
+      // おかしな時刻表示にならないようにデータが揃ってから計算
+      if (this.$data.currentTime && this.$data.beginTime) {
+        const diff = this.$data.limit - (this.$data.currentTime - this.$data.beginTime);
+        left = Math.max(0, diff);
+      }
+
+      return moment(left).format("mm:ss");
     }
   },
   methods: {
@@ -100,6 +108,9 @@ export default Vue.extend({
       d.intervalId = 0;
 
       await browser.storage.local.set({ drawingData: d });
+
+      this.$data.beginTime = 0;
+      this.$data.currentTime = 0;
     }
   },
 
