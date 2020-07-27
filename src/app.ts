@@ -1,7 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 
-const observer = new MutationObserver(applyFunctionView);
 console.log("pin");
 
 /**
@@ -13,13 +12,11 @@ async function applyFunctionView() {
         return;
     }
 
-    // すでに挿入されている場合は処理しない
-    const view = bar.querySelector("[id='drawing-app']");
+    const view = bar.querySelector("[id='drawing-container']");
     if (view) {
         return;
     }
 
-    observer.disconnect();
     console.log("mount");
 
     // 機能ビューを追加
@@ -33,4 +30,5 @@ async function applyFunctionView() {
     }).$mount("#drawing-app");
 }
 
+const observer = new MutationObserver(applyFunctionView);
 observer.observe(document.body, {childList: true, subtree: true});

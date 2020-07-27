@@ -70,7 +70,7 @@ export default Vue.extend({
                     d.intervalId = 0;
 
                     await browser.storage.local.set({ drawingData: d });
-                    document.location.href = nextPin.href;
+                    nextPin.click();
                     return;
                 }
             }
