@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import store from './store'
 
 console.log("pin");
 
@@ -26,7 +27,8 @@ async function applyFunctionView() {
     );
 
     new Vue({
-    render: h => h(App),
+        store,
+        render: h => h(App),
     }).$mount("#drawing-app");
 }
 

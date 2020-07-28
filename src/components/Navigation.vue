@@ -6,18 +6,18 @@
 </template>
 
 <script lang="ts">
-import { browser } from 'webextension-polyfill-ts';
 import moment from 'moment';
 import Vue from 'vue';
+import store from '../store'
 
 export default Vue.extend({
   name: "Navigation",
   data() {
     return {
-      buttonText: "***", //TODO: drawingData.timeoutId の値で自動で切り替えるようにする
       limit: 0,
       beginTime: 0,
       currentTime: 0,
+      intervalId: 0
     }
   },
   computed: {
@@ -31,30 +31,27 @@ export default Vue.extend({
       }
 
       return moment(left).format("mm:ss");
+    },
+    buttonText() {
+      return this.$store.getters.isDrawing ? "停止" : "開始";
     }
   },
   methods: {
-    async changeMode(event: Event) {
-      const d = (await browser.storage.local.get("drawingData")).drawingData;
-      
+    changeMode(event: Event) {
       // 実行中でなければ
-      if (!d.timeoutId) {
-          await this.startDrawingAsync(true);
-          this.$data.buttonText = "停止";
+      if (!this.$store.getters.isDrawing) {
+          this.startDrawing(true);
       } else {
-          await this.stopDrawingAsync();
-          this.$data.buttonText = "開始";
-
+          this.stopDrawing();
           //TODO: ピンの一覧を表示する
       }
     },
 
     startTimer() {
-        return setTimeout(async () => {
-            const d = (await browser.storage.local.get("drawingData")).drawingData ?? {};
+        return setTimeout(() => {
 
             // ピンを履歴に保存する
-            d.histories.push(document.location.href.replace("https://pinterest.jp/", ""));
+            this.$store.commit("addHistory", document.location.href.replace("https://pinterest.jp/", ""));
 
             // 次のピンを取得
             //TODO: ボタンを押してから表示したピンは除く
@@ -63,13 +60,12 @@ export default Vue.extend({
             for (const wrapper of Array.from(wrappers)) {
                 // 履歴に無いものを次のピンにする。
                 const anchors = Array.from(wrapper.getElementsByTagName("a"));
-                const nextPin = anchors.find(a => d.histories.findIndex((h: string) => h === a.href) < 0);
+                const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: string) => h === a.href) < 0);
                 
                 if (nextPin) {
-                    clearInterval(d.intervalId);
-                    d.intervalId = 0;
+                    clearInterval(this.$data.intervalId);
+                    this.$data.intervalId = 0;
 
-                    await browser.storage.local.set({ drawingData: d });
                     nextPin.click();
                     return;
                 }
@@ -81,48 +77,38 @@ export default Vue.extend({
         }, this.$data.limit);
     },
 
-    async startDrawingAsync(isFirst: boolean) {
-      const d = (await browser.storage.local.get("drawingData")).drawingData ?? {};
+    startDrawing(isFirst: boolean) {
 
       if (isFirst) {
-        d.histories = [];
+        this.$store.commit("clearHistories");
       }
 
-      clearTimeout(d.timeoutId);
-      clearInterval(d.intervalId);
+      clearTimeout(this.$store.getters.timeoutId);
+      clearInterval(this.$data.intervalId);
 
       this.$data.limit = 6000; //TODO: 設定から取得
       this.$data.beginTime = Date.now();
 
-      d.timeoutId = this.startTimer();
-      d.intervalId = setInterval(() => { this.$data.currentTime = Date.now(); }, 500);
-
-      await browser.storage.local.set({ drawingData: d });
+      this.$store.commit("beginDrawing", this.startTimer());
+      this.$data.intervalId = setInterval(() => { this.$data.currentTime = Date.now(); }, 500);
     },
 
-    async stopDrawingAsync() {
-      const d = (await browser.storage.local.get("drawingData")).drawingData ?? {};
-      clearTimeout(d.timeoutId);
-      clearInterval(d.intervalId);
-      d.timeoutId = 0;
-      d.intervalId = 0;
+    stopDrawing() {
+      clearTimeout(this.$store.state.timeoutId);
+      this.$store.commit("endDrawing");
 
-      await browser.storage.local.set({ drawingData: d });
+      clearInterval(this.intervalId);
+      this.$data.intervalId = 0;
 
       this.$data.beginTime = 0;
       this.$data.currentTime = 0;
     }
   },
 
-  async created() {
-    const d = (await browser.storage.local.get("drawingData")).drawingData ?? {};
-
+  created() {
     // 実行中（前のピンからの遷移）の場合
-    if (d.timeoutId) {
-        await this.startDrawingAsync(false);
-        this.$data.buttonText= "停止";
-    } else {
-        this.$data.buttonText= "開始";
+    if (this.$store.getters.isDrawing) {
+        this.startDrawing(false);
     }
   },
 
