@@ -11,7 +11,7 @@ Vue.component("pdbutton", PDButton);
  * ページに機能ビューを適用する
  */
 async function applyFunctionView() {
-    const bar = document.querySelector("[data-test-id='closeup-action-items']");
+    const bar = document.querySelector("[data-test-id='visual-content-container']");
     if (!bar) {
         return;
     }

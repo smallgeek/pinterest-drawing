@@ -11,6 +11,11 @@
   .navigation-container {
     display: flex;
     flex-direction: row;
+    padding-top:20px;
+    padding-bottom:16px;
+    padding-left:20px;
+    padding-right:20px;
+    border-radius:0px 32px 32px 0;
   }
 </style>
 
