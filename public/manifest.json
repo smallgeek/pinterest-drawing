@@ -14,7 +14,7 @@
     {
       "all_frames": true,
       "matches": ["https://*.pinterest.jp/*"],
-      "css": ["style.css"],
+      "css": ["css/app.css"],
       "js": [
         "js/chunk-vendors.js",
         "js/app.js"

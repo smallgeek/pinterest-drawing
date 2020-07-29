@@ -1,14 +1,23 @@
 <template>
-  <div>
-    <button v-text="buttonText" v-on:click="changeMode" />
-    <span>{{ leftTime }}</span>
+  <div class="navigation-container">
+    <pdbutton v-on:click="changeMode" :caption="buttonText" />
+    <div>
+      <span>{{ leftTime }}</span>
+    </div>
   </div>
 </template>
+
+<style>
+  .navigation-container {
+    display: flex;
+    flex-direction: row;
+  }
+</style>
 
 <script lang="ts">
 import moment from 'moment';
 import Vue from 'vue';
-import store from '../store'
+import store from '../store';
 
 export default Vue.extend({
   name: "Navigation",

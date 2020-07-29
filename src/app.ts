@@ -1,8 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 import store from './store'
+import PDButton from './components/PDButton.vue';
 
 console.log("pin");
+
+Vue.component("pdbutton", PDButton);
 
 /**
  * ページに機能ビューを適用する
