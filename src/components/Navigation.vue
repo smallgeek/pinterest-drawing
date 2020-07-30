@@ -1,9 +1,7 @@
 <template>
   <div class="navigation-container">
     <pdbutton v-on:click="changeMode" :caption="buttonText" />
-    <div>
-      <span>{{ leftTime }}</span>
-    </div>
+    <pdtime :ms="leftTime" />
   </div>
 </template>
 
@@ -20,12 +18,15 @@
 </style>
 
 <script lang="ts">
-import moment from 'moment';
 import Vue from 'vue';
+import PDTime from './PDTime.vue';
 import store from '../store';
 
 export default Vue.extend({
   name: "Navigation",
+  components: {
+    "pdtime": PDTime
+  },
   data() {
     return {
       limit: 0,
@@ -44,7 +45,7 @@ export default Vue.extend({
         left = Math.max(0, diff);
       }
 
-      return moment(left).format("mm:ss");
+      return left;
     },
     buttonText() {
       return this.$store.getters.isDrawing ? "停止" : "開始";
