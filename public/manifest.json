@@ -8,7 +8,8 @@
   ],
   "browser_action": {
     "default_icon": "128.png",
-    "default_title": "Pinterest Drawing"
+    "default_title": "Pinterest Drawing",
+    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
