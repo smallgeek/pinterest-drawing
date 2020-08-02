@@ -32,7 +32,7 @@ export default new Vuex.Store({
   },
   plugins: [
     VuexWebExtensions({
-      persistentStates: ['timeoutId', 'intervalId', 'histories']
+      persistentStates: ['timeoutId', 'histories']
     }),
   ],
 })
