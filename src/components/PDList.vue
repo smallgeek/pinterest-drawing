@@ -1,6 +1,6 @@
 <template>
   <div>
-    <list-item v-for="h in this.$store.state.histories" :key="h" :image="h">
+    <list-item v-for="h in this.$store.state.histories" :key="h.url" :image="h.image">
   </div>
 </template>
 

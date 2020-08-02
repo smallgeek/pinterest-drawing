@@ -1,5 +1,5 @@
 <template>
-  <div>{{image}}</div>
+  <img :src="image" >
 </template>
 
 <script lang="ts">

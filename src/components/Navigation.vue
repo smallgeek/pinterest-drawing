@@ -22,6 +22,7 @@ import Vue from 'vue';
 import PDTime from './PDTime.vue';
 import PDList from './PDList.vue';
 import store from '../store';
+import { Pin } from '../models/Pin';
 
 export default Vue.extend({
   name: "Navigation",
@@ -60,15 +61,14 @@ export default Vue.extend({
           this.startDrawing(true);
       } else {
           this.stopDrawing();
+          this.saveHistory();
           this.showHistories();
       }
     },
 
     startTimer() {
         return setTimeout(() => {
-
-            // ピンを履歴に保存する
-            this.$store.commit("addHistory", document.location.href.replace("https://pinterest.jp/", ""));
+            this.saveHistory();
 
             // 次のピンを取得
             //TODO: ボタンを押してから表示したピンは除く
@@ -88,8 +88,8 @@ export default Vue.extend({
                 }
             }
 
-            //TODO: 一覧を表示して終了させる
             console.log("次のピンが見つからない");
+            this.showHistories();
 
         }, this.$data.limit);
     },
@@ -119,6 +119,19 @@ export default Vue.extend({
 
       this.$data.beginTime = 0;
       this.$data.currentTime = 0;
+    },
+
+    saveHistory() {
+      // 画像ファイル名を取得
+      const container = document.querySelector("[data-test-id='closeup-body-image-container']");
+      if (!container)
+        return;
+
+      const img = container.getElementsByTagName("img")[0];
+      const pin = new Pin(document.location.href.replace("https://pinterest.jp/", ""), img.src);
+
+      // ピンを履歴に保存する
+      this.$store.commit("addHistory", pin);
     },
 
     showHistories() {
