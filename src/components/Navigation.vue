@@ -20,12 +20,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import PDTime from './PDTime.vue';
+import PDList from './PDList.vue';
 import store from '../store';
 
 export default Vue.extend({
   name: "Navigation",
   components: {
-    "pdtime": PDTime
+    "pdtime": PDTime,
+    "pdlist": PDList
   },
   data() {
     return {
@@ -58,7 +60,7 @@ export default Vue.extend({
           this.startDrawing(true);
       } else {
           this.stopDrawing();
-          //TODO: ピンの一覧を表示する
+          this.showHistories();
       }
     },
 
@@ -117,6 +119,11 @@ export default Vue.extend({
 
       this.$data.beginTime = 0;
       this.$data.currentTime = 0;
+    },
+
+    showHistories() {
+      if (this.$store.state.histories.length !== 0)
+        this.$modal.show(PDList);
     }
   },
 

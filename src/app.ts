@@ -2,10 +2,12 @@ import Vue from "vue";
 import App from "./App.vue";
 import store from './store'
 import PDButton from './components/PDButton.vue';
-
+import vmodal from 'vue-js-modal'
 console.log("pin");
 
 Vue.component("pdbutton", PDButton);
+
+Vue.use(vmodal)
 
 /**
  * ページに機能ビューを適用する
