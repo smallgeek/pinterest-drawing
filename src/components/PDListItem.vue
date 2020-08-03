@@ -9,8 +9,8 @@
     margin: 4px;
   }
   .thumb {
-    width: 120px;
-    height: 120px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     object-position: left top;
   }
