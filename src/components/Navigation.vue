@@ -77,7 +77,7 @@ export default Vue.extend({
             for (const wrapper of Array.from(wrappers)) {
                 // 履歴に無いものを次のピンにする。
                 const anchors = Array.from(wrapper.getElementsByTagName("a"));
-                const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: string) => h === a.href) < 0);
+                const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0);
                 
                 if (nextPin) {
                     clearInterval(this.$data.intervalId);
@@ -136,7 +136,12 @@ export default Vue.extend({
 
     showHistories() {
       if (this.$store.state.histories.length !== 0)
-        this.$modal.show(PDList);
+        this.$modal.show(PDList, {
+            text: ''
+          },{
+            width: '80%',
+            height: '80%'
+        });
     }
   },
 

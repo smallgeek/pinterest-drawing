@@ -1,8 +1,16 @@
 <template>
-  <div>
-    <list-item v-for="h in this.$store.state.histories" :key="h.url" :image="h.image">
+  <div class="pd-list">
+    <list-item v-for="h in this.$store.state.histories" :key="h.url" :pin="h">
   </div>
 </template>
+
+<style scoped>
+  .pd-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+</style>
 
 <script lang="ts">
 import Vue from 'vue'
