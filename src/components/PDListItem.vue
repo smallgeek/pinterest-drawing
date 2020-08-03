@@ -12,6 +12,7 @@
     width: 120px;
     height: 120px;
     object-fit: cover;
+    object-position: left top;
   }
 </style>
 
