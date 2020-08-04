@@ -4,11 +4,22 @@ module.exports = {
   filenameHashing: false,
   productionSourceMap: false,
 
+  pages: {
+    app: {
+      entry: 'src/app.ts',
+      filename: 'nouse/app.html',
+    },
+    popup: {
+      entry: 'src/popup/popup.ts',
+      filename: 'nouse/popup.html',
+    },
+  },
+
   configureWebpack: {
     plugins: [
       new CopyWebpackPlugin({
         patterns: [
-          { from: 'popup/popup.html', to: 'popup/popup.html', context: 'src' }
+          { from: 'popup/popup.html', to: 'popup.html', context: 'src' }
       ]})
     ]
   }
