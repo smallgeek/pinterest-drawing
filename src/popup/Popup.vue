@@ -75,20 +75,6 @@
     quotes: '"\300C" "\300D"';
     color: '#111';
   }
-  .popup-container input {
-    text-size-adjust: none;
-    font-size: 100%;
-    vertical-align: middle;
-    line-height: normal;
-    appearance: none;
-    opacity: 0;
-    outline: 0;
-    height: 24px;
-    width: 24px;
-    margin: 0;
-    cursor: pointer;
-    position: absolute;;
-  }
   .popup-container label {
     font-size: 16px;
   }
@@ -100,17 +86,19 @@
     display: flex;
     flex-direction: row;
   }
-  .popup-radio {
+  .popup-radio input {
     text-size-adjust: none;
     font-family: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,ＭＳ Ｐゴシック,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol';
     color: #211922;
     font-size: 12px;
+    vertical-align: middle;
+    line-height: normal;
     cursor: pointer;
     height: 24px;
     width: 24px;
-    border-width: 8px;
-    border-color: #111;
+    border-color: #ddd;
     border-radius: 50%;
+    border-width: 2px;
     border-style: solid;
     background-color: #fff;
     position: relative;
@@ -118,6 +106,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .popup-radio input:checked {
+    border-width: 8px;
+    border-color: #111;
     padding: 0 4px;
   }
   .popup-label {
