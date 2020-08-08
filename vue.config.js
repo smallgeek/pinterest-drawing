@@ -13,6 +13,10 @@ module.exports = {
       entry: 'src/popup/popup.ts',
       filename: 'nouse/popup.html',
     },
+    background: {
+      entry: 'src/background.ts',
+      filename: 'nouse/background.html',
+    }
   },
 
   configureWebpack: {

@@ -103,7 +103,7 @@ export default Vue.extend({
       clearTimeout(this.$store.getters.timeoutId);
       clearInterval(this.$data.intervalId);
 
-      this.$data.limit = 6000; //TODO: 設定から取得
+      this.$data.limit = this.$store.state.interval;
       this.$data.beginTime = Date.now();
 
       this.$store.commit("beginDrawing", this.startTimer());

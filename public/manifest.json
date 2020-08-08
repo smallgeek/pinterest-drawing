@@ -11,6 +11,12 @@
     "default_title": "Pinterest Drawing",
     "default_popup": "popup.html"
   },
+  "background": {
+    "scripts": [
+      "js/chunk-vendors.js",
+      "js/background.js"
+    ]
+  },
   "content_scripts": [
     {
       "all_frames": true,

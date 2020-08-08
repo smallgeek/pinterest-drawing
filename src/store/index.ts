@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     timeoutId: 0,
-    histories: [] as Pin[]
+    histories: [] as Pin[],
+    interval: 60000
   },
   getters: {
     isDrawing: state => !!state.timeoutId
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     clearHistories(state) {
       state.histories = [];
+    },
+    saveInterval(state, interval: number) {
+      state.interval = interval;
     }
   },
   actions: {
@@ -33,7 +37,8 @@ export default new Vuex.Store({
   },
   plugins: [
     VuexWebExtensions({
-      persistentStates: ['timeoutId', 'histories']
+      persistentStates: ['timeoutId', 'histories', 'interval'],
+      loggerLevel: 'verbose'
     }),
   ],
 })

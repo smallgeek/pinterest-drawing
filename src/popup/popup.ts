@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Popup from "./Popup.vue";
+import store from '../store';
 
 new Vue({
-    el: "#app",
+    store,
     render: h => h(Popup),
-})
+}).$mount("#app");
