@@ -128,7 +128,7 @@ export default Vue.extend({
         return;
 
       const img = container.getElementsByTagName("img")[0];
-      const pin = new Pin(document.location.href.replace("https://pinterest.jp/", ""), img.src);
+      const pin = new Pin(document.location.href, img.src);
 
       // ピンを履歴に保存する
       this.$store.commit("addHistory", pin);
