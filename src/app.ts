@@ -9,10 +9,24 @@ Vue.component("pdbutton", PDButton);
 
 Vue.use(vmodal)
 
+let oldHref = document.location.href;
+
 /**
  * ページに機能ビューを適用する
  */
 async function applyFunctionView() {
+
+    // ピン以外のページに移動した場合は遷移を停止
+    if (oldHref !== document.location.href) {
+        if (store.getters.isDrawing && !document.location.href.replace("https://www.pinterest.jp/", "").startsWith("pin/")) {
+            clearTimeout(store.state.timeoutId);
+            store.commit("endDrawing");
+
+            console.log("end drawing");
+        }
+        oldHref = document.location.href;
+    }
+
     const bar = document.querySelector("[data-test-id='visual-content-container']");
     if (!bar) {
         return;
