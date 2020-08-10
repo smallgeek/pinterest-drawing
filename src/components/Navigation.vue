@@ -1,6 +1,6 @@
 <template>
   <div class="navigation-container">
-    <pdbutton v-on:click="changeMode" :caption="buttonText" />
+    <pdbutton v-on:click="changeMode" :caption="buttonText" :isActive="true" />
     <pdtime :ms="leftTime" />
   </div>
 </template>

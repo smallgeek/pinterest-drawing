@@ -1,5 +1,8 @@
 :root {
+  --button-normal: #efefef;
+  --button-hover: #e2e2e2;
+  --button-text: #000000;
   --active-normal: #e60023;
-  --active-hover: #e60023;
+  --active-hover: #ad081b;
   --active-text: #ffffff;
 }
