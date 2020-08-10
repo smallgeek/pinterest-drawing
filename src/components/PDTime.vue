@@ -4,15 +4,15 @@
                    :rounded="false" 
                    :segment-width="8" 
                    :segment-height="2" 
-                   on-color="#e60023" 
-                   off-color="transparent" 
+                   :on-color="onColor"
+                   :off-color="offColor" 
                    class="seven-segment" />
     <seven-segment :value="minute % 10" 
                    :rounded="false" 
                    :segment-width="8" 
                    :segment-height="2" 
-                   on-color="#e60023" 
-                   off-color="transparent" 
+                   :on-color="onColor"
+                   :off-color="offColor" 
                    class="seven-segment" />
     <div>
       <span class="segment-separator">:</span>
@@ -21,20 +21,22 @@
                    :rounded="false" 
                    :segment-width="8" 
                    :segment-height="2" 
-                   on-color="#e60023" 
-                   off-color="transparent" 
+                   :on-color="onColor"
+                   :off-color="offColor" 
                    class="seven-segment" />
     <seven-segment :value="second % 10" 
                    :rounded="false" 
                    :segment-width="8" 
                    :segment-height="2"
-                   on-color="#e60023" 
-                   off-color="transparent" 
+                   :on-color="onColor"
+                   :off-color="offColor" 
                    class="seven-segment" />
   </div>
 </template>
 
 <style>
+  @import "../assets/_colors.css";
+
   .seven-segment-container {
     display: flex;
     align-items: center;
@@ -45,7 +47,7 @@
   }
   .segment-separator {
     font-size: 22px;
-    color: #e60023;
+    color: var(--active-normal);
   }
 </style>
 
@@ -68,6 +70,12 @@ export default Vue.extend({
     second() {
       const m = moment(this.ms);
       return m.second();
+    },
+    onColor() {
+      return "var(--active-normal)";
+    },
+    offColor() {
+      return "transparent";
     }
   }
 })

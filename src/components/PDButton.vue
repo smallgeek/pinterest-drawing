@@ -10,17 +10,19 @@
 </template>
 
 <style>
+  @import "../assets/_colors.css";
+
   .button-background {
     border-radius: 22px;
     max-height: inherit;
     cursor: pointer;
-    background-color: #e60023;
+    background-color: var(--active-normal);
   }
   .button-background:hover {
-    background-color: #ad081b;
+    background-color: var(--active-hover);
   }
   .button-label {
-    color: #fff;
+    color: var(--active-text);
     font-size: 14px;
     font-weight: 700;
   }
