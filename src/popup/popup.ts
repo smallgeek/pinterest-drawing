@@ -1,6 +1,9 @@
 import Vue from "vue";
 import Popup from "./Popup.vue";
 import store from '../store';
+import PDButton from '../components/PDButton.vue';
+
+Vue.component("pdbutton", PDButton);
 
 new Vue({
     store,

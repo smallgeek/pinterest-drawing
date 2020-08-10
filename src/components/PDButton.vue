@@ -14,7 +14,7 @@
 
   .button-background {
     border-radius: 22px;
-    max-height: inherit;
+    height: 40px;
     cursor: pointer;
     background-color: var(--button-normal);
   }
