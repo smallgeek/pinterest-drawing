@@ -83,7 +83,10 @@
     display: flex;
     flex-direction: row;
   }
-  .popup-title h1 {
+  .popup-description {
+    font-size: 14px;
+  }
+  .popup-description h1 {
     text-size-adjust: none;
     margin: 0;
     margin-bottom: 0;
