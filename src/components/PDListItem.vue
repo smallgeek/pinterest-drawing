@@ -7,12 +7,14 @@
 <style scoped>
   .link {
     margin: 4px;
+    cursor: zoom-in;
   }
   .thumb {
     width: 160px;
     height: 160px;
     object-fit: cover;
     object-position: left top;
+    border-radius: 16px;
   }
 </style>
 

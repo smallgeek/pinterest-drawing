@@ -140,7 +140,8 @@ export default Vue.extend({
             text: ''
           },{
             width: '80%',
-            height: '80%'
+            height: '80%',
+            styles: 'border-radius: 32px;'
         });
     }
   },
