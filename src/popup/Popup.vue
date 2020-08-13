@@ -119,6 +119,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    justify-items: center;
   }
   .popup-radio input {
     text-size-adjust: none;
@@ -139,6 +140,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
   }
   .popup-radio input:checked {
     border-width: 8px;
