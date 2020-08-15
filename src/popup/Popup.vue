@@ -74,6 +74,34 @@
       <div class="popup-config-category">回数</div>
       <input class="popup-input" type="number" v-model.number="count" @change="onCountChanged">
     </div>
+    <div style="margin-bottom: 28px;">
+      <div class="popup-config-category">切り替えパターン (パターンが優先されます) </div>
+      <input class="popup-input" type="text" value="120,120,120,120,180,180,180,300,300,600">
+    </div>
+
+    <h3>拡張設定</h3>
+    <div style="margin-bottom: 28px;">
+      <div class="popup-config-category">音</div>
+      <div class="popup-flex">
+        <div class="popup-radio">
+          <input id="none" name="sound" type="radio" value="0">
+        </div>
+        <div class="popup-label">
+          <label for="none">
+            <div>なし</div>
+          </label>
+        </div>
+        <!-- 60秒 -->
+        <div class="popup-radio">
+          <input id="system" name="sound" type="radio" value="1">
+        </div>
+        <div class="popup-label">
+          <label for="system">
+            <div>システム</div>
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
