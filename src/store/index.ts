@@ -9,10 +9,12 @@ export default new Vuex.Store({
   state: {
     timeoutId: 0,
     histories: [] as Pin[],
-    interval: 60000
+    interval: 60000,
+    count: 10
   },
   getters: {
-    isDrawing: state => !!state.timeoutId
+    isDrawing: state => !!state.timeoutId,
+    continuable: state => state.count <= 0 || state.histories.length < state.count
   },
   mutations: {
     beginDrawing(state, id) {
@@ -29,6 +31,9 @@ export default new Vuex.Store({
     },
     saveInterval(state, interval: number) {
       state.interval = interval;
+    },
+    saveCount(state, count: number) {
+      state.count = count;
     }
   },
   actions: {
@@ -37,7 +42,7 @@ export default new Vuex.Store({
   },
   plugins: [
     VuexWebExtensions({
-      persistentStates: ['timeoutId', 'histories', 'interval'],
+      persistentStates: ['timeoutId', 'histories', 'interval', 'count'],
       loggerLevel: 'verbose'
     }),
   ],

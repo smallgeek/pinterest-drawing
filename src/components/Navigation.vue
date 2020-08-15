@@ -70,25 +70,26 @@ export default Vue.extend({
         return setTimeout(() => {
             this.saveHistory();
 
-            // 次のピンを取得
-            //TODO: ボタンを押してから表示したピンは除く
-            const wrappers = document.querySelectorAll("[data-test-id='pinWrapper']");
+            if (this.$store.getters.continuable) {
+              // 次のピンを取得
+              const wrappers = document.querySelectorAll("[data-test-id='pinWrapper']");
 
-            for (const wrapper of Array.from(wrappers)) {
-                // 履歴に無いものを次のピンにする。
-                const anchors = Array.from(wrapper.getElementsByTagName("a"));
-                const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0);
-                
-                if (nextPin) {
-                    clearInterval(this.$data.intervalId);
-                    this.$data.intervalId = 0;
+              for (const wrapper of Array.from(wrappers)) {
+                  // 履歴に無いものを次のピンにする。
+                  const anchors = Array.from(wrapper.getElementsByTagName("a"));
+                  const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0);
+                  
+                  if (nextPin) {
+                      clearInterval(this.$data.intervalId);
+                      this.$data.intervalId = 0;
 
-                    nextPin.click();
-                    return;
-                }
+                      nextPin.click();
+                      return;
+                  }
+              }
+              console.log("次のピンが見つからない");
             }
 
-            console.log("次のピンが見つからない");
             this.showHistories();
 
         }, this.$data.limit);

@@ -16,7 +16,7 @@
         <!-- 30秒 -->
         <!-- TODO コンポーネントにする -->
         <div class="popup-radio">
-          <input id="30" name="interval" type="radio" value="30000" v-model.number="interval" @change="onChanged">
+          <input id="30" name="interval" type="radio" value="30000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="30">
@@ -25,7 +25,7 @@
         </div>
         <!-- 60秒 -->
         <div class="popup-radio">
-          <input id="60" name="interval" type="radio" value="60000" v-model.number="interval" @change="onChanged">
+          <input id="60" name="interval" type="radio" value="60000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="60">
@@ -34,7 +34,7 @@
         </div>
         <!-- 90秒 -->
         <div class="popup-radio">
-          <input id="90" name="interval" type="radio" value="90000" v-model.number="interval" @change="onChanged">
+          <input id="90" name="interval" type="radio" value="90000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="90">
@@ -43,7 +43,7 @@
         </div>
         <!-- 180秒 -->
         <div class="popup-radio">
-          <input id="180" name="interval" type="radio" value="180000" v-model.number="interval" @change="onChanged">
+          <input id="180" name="interval" type="radio" value="180000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="180">
@@ -52,7 +52,7 @@
         </div>
         <!-- 300秒 -->
         <div class="popup-radio">
-          <input id="300" name="interval" type="radio" value="300000" v-model.number="interval" @change="onChanged">
+          <input id="300" name="interval" type="radio" value="300000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="300">
@@ -61,7 +61,7 @@
         </div>
         <!-- 600秒 -->
         <div class="popup-radio">
-          <input id="600" name="interval" type="radio" value="600000" v-model.number="interval" @change="onChanged">
+          <input id="600" name="interval" type="radio" value="600000" v-model.number="interval" @change="onIntervalChanged">
         </div>
         <div class="popup-label">
           <label for="600">
@@ -72,7 +72,7 @@
     </div>
     <div style="margin-bottom: 28px;">
       <div class="popup-config-category">回数</div>
-      <input class="popup-input" type="number">
+      <input class="popup-input" type="number" v-model.number="count" @change="onCountChanged">
     </div>
   </div>
 </template>
@@ -186,12 +186,15 @@ export default Vue.extend({
   data() {
     return {};
   },
-  computed: mapState(['interval']),
+  computed: mapState(['interval', 'count']),
   methods: {
-    onChanged: function(e: Event) {
-      console.log("changed");
+    onIntervalChanged: function(e: Event) {
       const interval = (e.target as HTMLInputElement).value;
       this.$store.commit("saveInterval", interval);
+    },
+    onCountChanged: function(e: Event) {
+      const count = (e.target as HTMLInputElement).value;
+      this.$store.commit("saveCount", count);
     },
     close: () => {
       window.close();
