@@ -90,6 +90,7 @@ export default Vue.extend({
               console.log("次のピンが見つからない");
             }
 
+            this.stopDrawing();
             this.showHistories();
 
         }, this.$data.limit);
