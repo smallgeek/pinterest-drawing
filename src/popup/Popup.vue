@@ -78,6 +78,25 @@
       <div class="popup-config-category">切り替えパターン (カンマ区切り秒単位。パターンが優先されます) </div>
       <input class="popup-input" type="text" v-model="pattern" @change="onPatternChanged" placeholder="例：120,120,180,180,300,600">
     </div>
+    <!-- 履歴を保持する期間 -->
+    <div style="margin-bottom: 28px;">
+      <div class="popup-config-category">履歴を保持する期間</div>
+      <div class="popup-flex">
+        <div class="popup-select-container">
+          <select class="popup-select" name="period">
+            <option value="set">1セットのみ</option>
+            <option value="hour">1時間</option>
+            <option value="day">1日</option>
+            <option value="week">1週間</option>
+          </select>
+          <div class="popup-select-arrow" style="padding-right:14px;padding-top:2px">
+            <svg height="12" width="12" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
+              <path d="M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <h3>拡張設定</h3>
     <div style="margin-bottom: 28px;">
@@ -201,6 +220,51 @@
     color: #111;
     min-height: 48px;
     box-sizing: border-box;
+  }
+  .popup-select-container {
+    color: #211922;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    background-color: #fff;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .popup-select {
+    text-size-adjust: none;
+    margin: 0;
+    vertical-align: middle;
+    appearance: none;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 0 35px 0 16px;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    width: 100%;
+    border-color: #ddd;
+    cursor: pointer;
+    color: #111;
+    background-color: transparent;
+    position: relative;
+    min-height: 48px;
+  }
+  .popup-select-arrow {
+    text-size-adjust: none;
+    color: #211922;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    align-items: center;
+    padding-right: 14px;
+    padding-top: 2px;
   }
 </style>
 
