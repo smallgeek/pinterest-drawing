@@ -83,7 +83,7 @@
       <div class="popup-config-category">履歴を保持する期間</div>
       <div class="popup-flex">
         <div class="popup-select-container">
-          <select class="popup-select" name="period">
+          <select class="popup-select" name="period" v-model="period" @change="onPeriodChanged">
             <option value="set">1セットのみ</option>
             <option value="hour">1時間</option>
             <option value="day">1日</option>
@@ -277,7 +277,7 @@ export default Vue.extend({
   data() {
     return {};
   },
-  computed: mapState(['interval', 'count', 'pattern']),
+  computed: mapState(['interval', 'count', 'pattern', 'period']),
   methods: {
     onIntervalChanged: function(e: Event) {
       const interval = (e.target as HTMLInputElement).value;
@@ -290,6 +290,10 @@ export default Vue.extend({
     onPatternChanged: function(e: Event) {
       const pattern = (e.target as HTMLInputElement).value;
       this.$store.commit("savePattern", pattern);
+    },
+    onPeriodChanged: function(e: Event) {
+      const period = (e.target as HTMLSelectElement).value;
+      this.$store.commit("savePeriod", period);
     },
     close: () => {
       window.close();

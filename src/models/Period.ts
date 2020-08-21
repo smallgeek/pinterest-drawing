@@ -1,0 +1,1 @@
+export type Period = 'set' | 'hour' | 'day' | 'week';

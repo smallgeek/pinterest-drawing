@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexWebExtensions from 'vuex-webextensions';
 import { Pin } from '../models/Pin';
+import { Period } from '../models/Period';
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
     histories: [] as Pin[],
     interval: 60,
     count: 10,
-    pattern: ''
+    pattern: '',
+    period: 'set' as Period
   },
   getters: {
     isDrawing: state => !!state.timeoutId,
@@ -58,6 +60,9 @@ export default new Vuex.Store({
     },
     savePattern(state, pattern: string) {
       state.pattern = pattern;
+    },
+    savePeriod(state, period: Period) {
+      state.period = period;
     }
   },
   actions: {
@@ -66,7 +71,7 @@ export default new Vuex.Store({
   },
   plugins: [
     VuexWebExtensions({
-      persistentStates: ['timeoutId', 'histories', 'interval', 'count', 'pattern'],
+      persistentStates: ['timeoutId', 'histories', 'interval', 'count', 'pattern', 'period'],
       loggerLevel: 'verbose'
     }),
   ],
