@@ -84,6 +84,10 @@ export default Vue.extend({
                       this.$data.intervalId = 0;
 
                       nextPin.click();
+
+                      // Pinterest 側のキャッシュ仕様が変わったらしく created / mounted では開始できないためここでやる
+                      new Promise(resolve => this.startDrawing(false));
+
                       return;
                   }
               }
@@ -93,7 +97,7 @@ export default Vue.extend({
             this.stopDrawing();
             this.showHistories();
 
-        }, this.$data.limit);
+        }, this.$data.limit + 2000);
     },
 
     startDrawing(isFirst: boolean) {
