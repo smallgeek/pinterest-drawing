@@ -76,7 +76,7 @@ export default Vue.extend({
 
               for (const wrapper of Array.from(wrappers)) {
                   // 履歴に無いものを次のピンにする。
-                  const anchors = Array.from(wrapper.getElementsByTagName("a"));
+                  const anchors = Array.from(wrapper.children[0].getElementsByTagName("a"));
                   const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0);
                   
                   if (nextPin) {
