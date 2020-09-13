@@ -77,7 +77,14 @@ export default Vue.extend({
               for (const wrapper of Array.from(wrappers)) {
                   // 履歴に無いものを次のピンにする。
                   const anchors = Array.from(wrapper.children[0].getElementsByTagName("a"));
-                  const nextPin = anchors.find(a => this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0);
+                  const nextPin = anchors.find(a => {
+                      // 動画は除外
+                      const video = a.querySelector("[data-test-id='pinrep-video']");
+                      if (video)
+                        return false;
+
+                      return this.$store.state.histories.findIndex((h: Pin) => h.url === a.href) < 0;
+                  });
                   
                   if (nextPin) {
                       clearInterval(this.$data.intervalId);
