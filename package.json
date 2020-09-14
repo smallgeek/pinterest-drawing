@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Pinterest を使用して絵の練習をするための Google Chrome 拡張",
   "scripts": {
-    "compile:content": "vue-cli-service build --no-clean"
+    "build": "vue-cli-service build --no-clean"
   },
   "repository": {
     "type": "git",
