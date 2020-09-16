@@ -93,7 +93,7 @@ export default Vue.extend({
                       nextPin.click();
 
                       // Pinterest 側のキャッシュ仕様が変わったらしく created / mounted では開始できないためここでやる
-                      new Promise(resolve => this.startDrawing(false));
+                      this.startDrawing(false);
 
                       return;
                   }
