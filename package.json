@@ -27,9 +27,9 @@
   "devDependencies": {
     "@types/copy-webpack-plugin": "^6.0.0",
     "@types/webpack": "^4.41.21",
-    "@vue/cli-plugin-typescript": "^4.4.6",
+    "@vue/cli-plugin-typescript": "^5.0.8",
     "@vue/cli-plugin-vuex": "^4.4.6",
-    "@vue/cli-service": "^4.4.6",
+    "@vue/cli-service": "^5.0.8",
     "copy-webpack-plugin": "^6.0.3",
     "node-forge": "^0.10.0",
     "ts-loader": "^8.0.0",
