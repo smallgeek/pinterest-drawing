@@ -17,7 +17,7 @@
   "homepage": "https://github.com/smallgeek/pinterest-drawing#readme",
   "dependencies": {
     "moment": "^2.27.0",
-    "vue": "^2.6.11",
+    "vue": "^3.5.13",
     "vue-js-modal": "^2.0.0-rc.6",
     "vue-seven-segment-display": "^2.1.0",
     "vuex": "^3.5.1",
